@@ -1,13 +1,15 @@
 package ru.quazar.l06springboot.controller;
 
-import ru.quazar.l06springboot.model.Book;
-import ru.quazar.l06springboot.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.quazar.l06springboot.model.Book;
+import ru.quazar.l06springboot.service.BookService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
+//@RequestMapping("/api")
 public class BookController {
 
     @Autowired
@@ -16,6 +18,11 @@ public class BookController {
     @GetMapping("/books")
     List<Book> getBooks() {
         return bookService.getBooks();
+    }
+
+    @GetMapping("/books/{id}")
+    Book getBook(@PathVariable Long id) {
+        return bookService.getBook(id);
     }
 
     @PostMapping("/books")
@@ -28,9 +35,14 @@ public class BookController {
         return bookService.updateBook(id, book);
     }
 
-    @GetMapping("/books/{id}")
-    Book getBook(@PathVariable Long id) {
-        return bookService.getBook(id);
+    @PatchMapping("books/{id}/{isbn}")
+    Book changeBookCode(@RequestBody Book book, @PathVariable Long id, String isbn) {
+        return bookService.changeBookIsbn(id, isbn, book);
+    }
+
+    @PatchMapping("books/{id}/{price}")
+    Book changeBookPrice(@RequestBody Book book, @PathVariable Long id, BigDecimal price) {
+        return bookService.changeBookPrice(id, price, book);
     }
 
     @DeleteMapping("/books")

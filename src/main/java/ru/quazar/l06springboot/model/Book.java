@@ -15,18 +15,20 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private boolean isBusy;
+    private String isbn;
     private String title;
     private String author;
     private BigDecimal price;
+    private boolean isBusy;
 
     public Book() {};
 
-    public Book(long id, boolean isBusy, String title, String author, BigDecimal price) {
+    public Book(long id, String isbn, String title, String author, BigDecimal price, boolean isBusy) {
         this.id = id;
-        this.isBusy = isBusy;
+        this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.price = price;
+        this.isBusy = isBusy;
     }
 }

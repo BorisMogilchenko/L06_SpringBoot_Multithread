@@ -43,7 +43,7 @@ public class LoadFileToList {
 
             while ((line = bufRead.readLine()) != null) {
                 List<String> booksProperty = Arrays.asList(line.split("\\s*,\\s*"));
-                booksCatalog.add(new Book(id++, false, booksProperty.get(0), booksProperty.get(1), new BigDecimal(booksProperty.get(2))));
+                booksCatalog.add(new Book(id++, booksProperty.get(0), booksProperty.get(1), booksProperty.get(2), new BigDecimal(booksProperty.get(3)), false));
             }
         } catch (
                 IOException ex) {

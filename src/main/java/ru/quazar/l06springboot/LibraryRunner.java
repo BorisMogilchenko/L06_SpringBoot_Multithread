@@ -32,7 +32,7 @@ public class LibraryRunner implements CommandLineRunner {
 
         booksCatalog.forEach(System.out::println);
         for (Book myBook : booksCatalog) {
-            repository.save(myBook);
+            bookRepository.save(myBook);
         }
     }
 
